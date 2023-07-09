@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Collection Details</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <style>
+    .header {
+      background-color: #23272B;
+      color: #FFFFFF;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .header__title {
+      margin: 0;
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    .main {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 80px);
+    }
+
+    .container {
+      background-color: #FFFFFF;
+      border-radius: 8px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .form__group {
+      margin-bottom: 20px;
+    }
+
+    .form__label {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .form__input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #CCCCCC;
+      border-radius: 4px;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      background-color: #4CAF50;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background-color: #45A049;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1 class="header__title">Payment Collection Details</h1>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <form id="paymentForm" class="form">
+        <div class="form__group">
+          <label for="anjumanId" class="form__label">Anjuman ID:</label>
+          <input type="text" id="anjumanId" class="form__input" required>
+        </div>
+
+        <div class="form__group">
+          <label for="name" class="form__label">Name:</label>
+          <input type="text" id="name" class="form__input" required>
+        </div>
+
+        <div class="form__group">
+          <label for="phoneNumber" class="form__label">Phone Number:</label>
+          <input type="tel" id="phoneNumber" class="form__input" required>
+        </div>
+
+        <div class="form__group">
+          <label for="amount" class="form__label">Amount:</label>
+          <input type="number" id="amount" class="form__input" required>
+        </div>
+
+        <div class="form__group">
+          <label for="address" class="form__label">Address:</label>
+          <textarea id="address" class="form__input" required></textarea>
+        </div>
+
+        <div class="form__group">
+          <label for="date" class="form__label">Date:</label>
+          <input type="date" id="date" class="form__input" required>
+        </div>
+
+        <button type="submit" class="btn">Submit</button>
+      </form>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    document.getElementById("paymentForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      
+      // Get form values
+      var anjumanId = document.getElementById("anjumanId").value;
+      var name = document.getElementById("name").value;
+      var phoneNumber = document.getElementById("phoneNumber").value;
+      var amount = document.getElementById("amount").value;
+      var address = document.getElementById("address").value;
+      var date = document.getElementById("date").value;
+
+      // Create the receipt URL with query parameters
+      var receiptUrl = "receipt.html?" +
+        "anjumanId=" + encodeURIComponent(anjumanId) +
+        "&name=" + encodeURIComponent(name) +
+        "&phoneNumber=" + encodeURIComponent(phoneNumber) +
+        "&amount=" + encodeURIComponent(amount) +
+        "&address=" + encodeURIComponent(address) +
+        "&date=" + encodeURIComponent(date);
+
+      // Redirect to the receipt page
+      window.location.href = receiptUrl;
+    });
+  </script>
+</body>
+</html>
